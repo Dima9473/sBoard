@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "node scripts/copy-canvaskit.mjs",
     "sample:pdf": "node scripts/export-sample-pdf.mjs",
-    "sample:png": "node scripts/generate-sample-png.mjs"
+    "sample:png": "node scripts/generate-sample-png.mjs",
+    "sync:github": "node scripts/sync-github.mjs"
   },
   "keywords": [
     "pixi",
