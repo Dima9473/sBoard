@@ -1,0 +1,37 @@
+{
+  "name": "sboard-pixi-skia",
+  "version": "1.0.0",
+  "description": "Pixi.js + Skia (CanvasKit WASM): двойной рендер, события, векторный PDF",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "node scripts/copy-canvaskit.mjs",
+    "sample:pdf": "node scripts/export-sample-pdf.mjs",
+    "sample:png": "node scripts/generate-sample-png.mjs"
+  },
+  "keywords": [
+    "pixi",
+    "skia",
+    "canvaskit",
+    "pdf",
+    "typescript"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@rollerbird/canvaskit-wasm-pdf": "file:vendor/canvaskit-wasm-pdf",
+    "pixi.js-legacy": "7.2.4",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
+  }
+}
