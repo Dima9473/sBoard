@@ -69,12 +69,13 @@ vendor/           # @rollerbird/canvaskit-wasm-pdf (Skia + PDF WASM)
 
 Один раз в репозитории: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-Локальная сборка с тем же base, что на Pages:
+Локальная сборка с тем же base, что на Pages (PowerShell):
 
-```bash
-VITE_BASE_PATH=/sBoard/ npm run build
-npm run preview
+```powershell
+$env:VITE_BASE_PATH='sBoard'; npm run build; npm run preview
 ```
+
+На CI base выставляется автоматически из `GITHUB_REPOSITORY`.
 
 Синхронизация с GitHub:
 

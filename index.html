@@ -8,7 +8,8 @@
   <body>
     <div id="root"></div>
     <!-- CanvasKit WASM (глобальный CanvasKitInit) -->
-    <script src="/canvaskit/canvaskit-pdf.js"></script>
+    <!-- Относительный путь: Vite подставит base (/sBoard/ на Pages) -->
+    <script src="canvaskit/canvaskit-pdf.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

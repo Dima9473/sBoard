@@ -1,7 +1,8 @@
 import type { CanvasKit } from '@rollerbird/canvaskit-wasm-pdf';
+import { publicUrl } from '../utils/publicPath';
 
-/** Путь к Skia WASM с поддержкой PDF backend */
-const CANVASKIT_BASE = '/canvaskit/';
+/** Путь к Skia WASM с поддержкой PDF backend (учитывает GitHub Pages base) */
+const CANVASKIT_BASE = publicUrl('canvaskit/');
 
 type CanvasKitInitFn = (opts: { locateFile: (file: string) => string }) => Promise<CanvasKit>;
 
@@ -18,7 +19,7 @@ function getCanvasKitInit(): CanvasKitInitFn {
     return window.CanvasKitInit;
   }
   throw new Error(
-    'CanvasKitInit не найден. Убедитесь, что /canvaskit/canvaskit-pdf.js подключён в index.html',
+    `CanvasKitInit не найден. Убедитесь, что ${publicUrl('canvaskit/canvaskit-pdf.js')} подключён в index.html`,
   );
 }
 

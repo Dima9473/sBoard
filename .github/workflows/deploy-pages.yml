@@ -33,9 +33,7 @@ jobs:
 
       - name: Build for GitHub Pages
         run: npm run build
-        env:
-          # Базовый путь для project site: /<repo>/
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        # base берётся из GITHUB_REPOSITORY в vite.config.ts (см. resolveBase)
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

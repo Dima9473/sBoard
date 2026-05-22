@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js-legacy';
+import { publicUrl } from '../utils/publicPath';
 
 export const SCENE_SIZE = { width: 800, height: 600 };
 
@@ -85,7 +86,7 @@ export async function createSpriteScene(): Promise<PIXI.Container> {
 
   let texture: PIXI.Texture;
   try {
-    texture = await PIXI.Assets.load('/assets/sample.png');
+    texture = await PIXI.Assets.load(publicUrl('assets/sample.png'));
   } catch {
     // Fallback: «PNG» через generateTexture, если файл недоступен
     const icon = new PIXI.Graphics();
