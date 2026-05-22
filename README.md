@@ -2,6 +2,14 @@
 
 Приложение на **React + TypeScript**, объединяющее **Pixi.js 7.2.4 (legacy, CanvasRenderer)** и **Skia** через **CanvasKit WASM** с **PDF backend**. Сцена рисуется на двух канвасах; экспорт в PDF — **векторный** (пути и заливки Skia, не растровая вставка).
 
+## Сдача задания
+
+**Ожидаемый результат**
+
+- **Проект на GitHub:** [https://github.com/Dima9473/sBoard](https://github.com/Dima9473/sBoard) — исходники в `src/`, сборка: `npm install` → `npm run dev`
+- **Работающая программа (бесплатный хостинг):** [https://dima9473.github.io/sBoard/](https://dima9473.github.io/sBoard/) — деплой: [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)
+- **PDF с векторной графикой (Skia):** [https://github.com/Dima9473/sBoard/blob/main/samples/sboard-demo-vector.pdf](https://github.com/Dima9473/sBoard/blob/main/samples/sboard-demo-vector.pdf) — или кнопка «Экспорт в PDF (вектор)» на демо; код: `src/pdf/exportSceneToPdf.ts`
+
 ## Возможности
 
 - Обёртка `PixiToSkiaConverter` / `convertPixiContainerToSkia()` — обход `PIXI.Container` с `translate` / `rotate` / `scale`
@@ -24,7 +32,7 @@ node scripts/generate-sample-png.mjs   # PNG для сцены со спрайт
 npm run dev
 ```
 
-Откройте http://localhost:5173
+Откройте [http://localhost:5173](http://localhost:5173)
 
 ### Сборка и превью
 
@@ -60,12 +68,14 @@ vendor/           # @rollerbird/canvaskit-wasm-pdf (Skia + PDF WASM)
 
 ## GitHub Actions
 
-| Workflow | Назначение |
-|----------|------------|
-| [CI](.github/workflows/ci.yml) | `typecheck` + `build` на push/PR в `main` |
-| [Deploy GitHub Pages](.github/workflows/deploy-pages.yml) | публикация `dist/` после push в `main` |
 
-**Демо после деплоя:** https://dima9473.github.io/sBoard/
+| Workflow                                                  | Назначение                                |
+| --------------------------------------------------------- | ----------------------------------------- |
+| [CI](.github/workflows/ci.yml)                            | `typecheck` + `build` на push/PR в `main` |
+| [Deploy GitHub Pages](.github/workflows/deploy-pages.yml) | публикация `dist/` после push в `main`    |
+
+
+**Демо после деплоя:** [https://dima9473.github.io/sBoard/](https://dima9473.github.io/sBoard/)
 
 **Settings → Pages → Source: GitHub Actions** (см. [.github/PAGES_SETUP.md](.github/PAGES_SETUP.md)).  
 Папка `dist/` в git не хранится; на Pages попадает только артефакт из Actions.
@@ -90,20 +100,14 @@ npm run sync:github
 
 Убедитесь, что в `dist/canvaskit/` лежат `canvaskit-pdf.js` и `canvaskit-pdf.wasm`.
 
-## Сдача задания
-
-- Репозиторий на GitHub
-- Ссылка на задеплоенное приложение
-- PDF с векторной графикой (`samples/sboard-demo-vector.pdf` или экспорт из UI)
-
-Форма: https://forms.yandex.ru/u/6a0db569eb6146662ae0fb45  
-Контакт: @sboard_support_bot (Telegram)
-
 ## Технологии
 
-| Компонент | Версия / пакет |
-|-----------|----------------|
-| UI | React 18 |
-| Pixi | `pixi.js-legacy@7.2.4` |
+
+| Компонент       | Версия / пакет                            |
+| --------------- | ----------------------------------------- |
+| UI              | React 18                                  |
+| Pixi            | `pixi.js-legacy@7.2.4`                    |
 | Skia WASM + PDF | `@rollerbird/canvaskit-wasm-pdf` (vendor) |
-| Сборка | Vite + TypeScript |
+| Сборка          | Vite + TypeScript                         |
+
+
