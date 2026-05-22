@@ -1,4 +1,5 @@
 # Публикация SPA на GitHub Pages (https://dima9473.github.io/sBoard/)
+# Source в Settings → Pages: GitHub Actions (не branch /docs — дубликат dist в репо не нужен)
 name: Deploy GitHub Pages
 
 on:
@@ -7,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -42,22 +43,7 @@ jobs:
             exit 1
           fi
           grep -q '/assets/index-' dist/index.html || (echo "::error::Нет bundle в dist/index.html" && exit 1)
-
-      - name: Sync docs/ and root canvaskit/ (Pages: /docs или legacy /)
-        run: |
-          rm -rf docs
-          cp -r dist docs
-          rm -rf canvaskit
-          cp -r dist/canvaskit canvaskit
-
-      - name: Commit docs/ and canvaskit/
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs canvaskit
-          git diff --staged --quiet && echo "нет изменений для Pages" && exit 0
-          git commit -m "deploy: sync docs/ and canvaskit/ from dist [skip ci]"
-          git push
+          test -f dist/canvaskit/canvaskit-pdf.wasm || (echo "::error::Нет canvaskit WASM в dist" && exit 1)
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

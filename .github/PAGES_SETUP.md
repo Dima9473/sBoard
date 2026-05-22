@@ -1,25 +1,22 @@
-# Настройка GitHub Pages для sBoard
+# GitHub Pages для sBoard
 
-Сейчас в репозитории **две** копии сборки:
+## Настройка (один раз)
 
-| Путь | Назначение |
-|------|------------|
-| `docs/` | полная сборка (рекомендуется для Pages) |
-| `canvaskit/` в корне | WASM при source **main → / (root)** |
+**Settings → Pages → Build and deployment → Source: GitHub Actions**
 
-## Обязательно (рекомендуется)
+Не используйте «Deploy from branch» (`/docs` или `/`) — иначе в репозитории появляются дубликаты сборки.
 
-**Settings → Pages → Build and deployment**
+## Деплой
 
-- **Source:** Deploy from a branch  
-- **Branch:** `main`  
-- **Folder:** `/docs` (не `/ (root)`)
+После push в `main` workflow **Deploy GitHub Pages** публикует папку `dist/` (артефакт Actions).
 
 Сайт: https://dima9473.github.io/sBoard/
 
-## Если оставить `/ (root)`
+## Локально
 
-Будет отдаваться dev-`index.html` с `/src/main.tsx` — приложение **не заработает**.  
-Нужно переключить на **`/docs`** или **GitHub Actions** как source.
+```bash
+npm install   # postinstall → public/canvaskit/ (в .gitignore)
+npm run build # → dist/
+```
 
-После смены на `/docs` подождите 1–2 минуты и обновите страницу (**Ctrl+Shift+R**).
+Источник WASM: `vendor/canvaskit-wasm-pdf/bin/` (пакет npm `file:vendor/...`).

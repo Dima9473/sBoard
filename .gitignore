@@ -1,6 +1,9 @@
 node_modules/
 dist/
-# docs/ коммитится CI для Pages (branch /docs); не игнорируем
+# Сборка и копии WASM — генерируются (npm run build / postinstall)
+docs/
+canvaskit/
+public/canvaskit/
 .DS_Store
 *.log
 .env
