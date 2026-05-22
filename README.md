@@ -58,21 +58,35 @@ public/canvaskit/ # canvaskit-pdf.wasm (копируется postinstall)
 vendor/           # @rollerbird/canvaskit-wasm-pdf (Skia + PDF WASM)
 ```
 
-## Деплой (бесплатный хостинг)
+## GitHub Actions
 
-После `npm run build` загрузите папку `dist/` на [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/) или [Cloudflare Pages](https://pages.cloudflare.com/) как статический сайт.
+| Workflow | Назначение |
+|----------|------------|
+| [CI](.github/workflows/ci.yml) | `typecheck` + `build` на push/PR в `main` |
+| [Deploy GitHub Pages](.github/workflows/deploy-pages.yml) | публикация `dist/` после push в `main` |
 
-Убедитесь, что в `dist/canvaskit/` лежат `canvaskit-pdf.js` и `canvaskit-pdf.wasm`.
+**Демо после деплоя:** https://dima9473.github.io/sBoard/
 
-## GitHub
+Один раз в репозитории: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Локальная сборка с тем же base, что на Pages:
 
 ```bash
-git init
-git add .
-git commit -m "Pixi + Skia: dual render, events, vector PDF export"
-git remote add origin <your-repo-url>
-git push -u origin main
+VITE_BASE_PATH=/sBoard/ npm run build
+npm run preview
 ```
+
+Синхронизация с GitHub:
+
+```bash
+npm run sync:github
+```
+
+## Деплой (альтернативы)
+
+После `npm run build` можно загрузить `dist/` на [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/) или [Cloudflare Pages](https://pages.cloudflare.com/).
+
+Убедитесь, что в `dist/canvaskit/` лежат `canvaskit-pdf.js` и `canvaskit-pdf.wasm`.
 
 ## Сдача задания
 

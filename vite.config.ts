@@ -2,8 +2,12 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+/** Базовый URL: локально `/`, на GitHub Pages — `/sBoard/` (задаётся в Actions через VITE_BASE_PATH) */
+const base = process.env.VITE_BASE_PATH ?? '/';
+
 /** Vite + React: dev-сервер и сборка SPA с CanvasKit WASM в public */
 export default defineConfig({
+  base,
   plugins: [react()],
   root: '.',
   publicDir: 'public',
