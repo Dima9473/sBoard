@@ -24,10 +24,21 @@ function resolveBase(): string {
 
 const base = resolveBase();
 
+/** <base href> для корректных относительных URL на GitHub Pages (/sBoard без слэша в конце) */
+function htmlBasePlugin(basePath: string) {
+  return {
+    name: 'html-base-href',
+    transformIndexHtml(html: string) {
+      if (basePath === '/') return html;
+      return html.replace('<head>', `<head>\n    <base href="${basePath}" />`);
+    },
+  };
+}
+
 /** Vite + React: dev-сервер и сборка SPA с CanvasKit WASM в public */
 export default defineConfig({
   base,
-  plugins: [react()],
+  plugins: [react(), htmlBasePlugin(base)],
   root: '.',
   publicDir: 'public',
   build: {

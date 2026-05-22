@@ -1,5 +1,6 @@
 node_modules/
 dist/
+# docs/ коммитится CI для Pages (branch /docs); не игнорируем
 .DS_Store
 *.log
 .env
