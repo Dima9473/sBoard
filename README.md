@@ -67,10 +67,10 @@ vendor/           # @rollerbird/canvaskit-wasm-pdf (Skia + PDF WASM)
 
 **Демо после деплоя:** https://dima9473.github.io/sBoard/
 
-Один раз в репозитории: **Settings → Pages → Build and deployment → Source: GitHub Actions**  
-(не «Deploy from branch / root» — иначе отдаётся исходный `index.html` с `/src/main.tsx` и будет 404).
+**Важно:** **Settings → Pages → Deploy from branch → `main` → `/docs`**  
+(сейчас у многих стоит **`/` (root)** — тогда `canvaskit` и bundle дают 404; см. [.github/PAGES_SETUP.md](.github/PAGES_SETUP.md))
 
-Альтернатива: **Deploy from branch → main → /docs** — папка `docs/` обновляется автоматически после каждой сборки.
+Папки `docs/` и `canvaskit/` обновляются автоматически после каждой сборки в Actions.
 
 Локальная сборка с тем же base, что на Pages (PowerShell):
 
